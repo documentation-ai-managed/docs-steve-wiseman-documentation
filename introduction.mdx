@@ -1,0 +1,94 @@
+---
+title: Introduction
+description: Overview of Steve Wiseman Documentation and its core capabilities
+---
+
+## Getting Started with Steve Wiseman Documentation
+
+Steve Wiseman Documentation provides a comprehensive platform for organizing and managing all your project documentation. Whether you're building APIs, creating user guides, or maintaining technical knowledge bases, our platform offers intuitive tools to streamline your documentation workflow.
+
+<Columns cols={3}>
+  <Card title="Quick Setup" icon="rocket" href="getting-started">
+    Get up and running in minutes with our guided setup process.
+  </Card>
+  <Card title="API Integration" icon="code" href="api-reference">
+    Connect your projects with our powerful API endpoints.
+  </Card>
+  <Card title="Advanced Features" icon="settings" href="configuration">
+    Explore advanced configuration options and customization.
+  </Card>
+</Columns>
+
+## Key Features
+
+<Tabs>
+  <Tab title="Organization" icon="folder">
+    Organize your documentation with hierarchical structures, tags, and search capabilities.
+    
+    <Callout kind="tip">Use folders to group related documents and tags for quick filtering.</Callout>
+    
+    <Steps>
+      <Step title="Create a Folder" icon="folder">
+        Navigate to your dashboard and click the "New Folder" button.
+        
+        <CodeGroup tabs="JavaScript,Python">
+          ````javascript
+const folder = await createFolder({
+  name: 'API Documentation',
+  parentId: null
+});
+````
+          ````python
+folder = api.create_folder(name="API Documentation", parent_id=None)
+````
+        </Step>
+      <Step title="Add Documents" icon="file-text">
+        Upload or create documents within your folders.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Collaboration" icon="users">
+    Collaborate with team members in real-time, share drafts, and manage permissions.
+    
+    <Expandable title="Permission Levels" default-open="false">
+      - **Viewer**: Read-only access to documents
+      - **Editor**: Can edit and comment on documents
+      - **Admin**: Full control including user management
+    </Expandable>
+    
+    <ExpandableGroup>
+      <Expandable title="Real-time Editing" default-open="true">
+        Multiple users can edit the same document simultaneously with conflict resolution.
+      </Expandable>
+      <Expandable title="Version History" default-open="false">
+        Track all changes with automatic versioning and rollback capabilities.
+      </Expandable>
+    </ExpandableGroup>
+  </Tab>
+</Tabs>
+
+## API-First Design
+
+Our platform is built with APIs at its core, ensuring seamless integration with your development workflow.
+
+<Callout kind="info">All platform features are accessible via REST APIs, making automation and integration straightforward.</Callout>
+
+## Getting Help
+
+<ExpandableGroup>
+  <Expandable title="Documentation Support" default-open="false">
+    Access comprehensive guides, tutorials, and API references within the platform.
+  </Expandable>
+  <Expandable title="Community Forums" default-open="false">
+    Join our community forums to ask questions and share knowledge with other users.
+  </Expandable>
+  <Expandable title="Professional Support" default-open="false">
+    Contact our support team for enterprise-level assistance and custom solutions.
+  </Expandable>
+</ExpandableGroup>
+
+## Next Steps
+
+Ready to start documenting your projects? Head over to our getting started guide to set up your first documentation space.
+
+<Callout kind="success">Pro tip: Start small with a few key documents and expand as your needs grow.</Callout>

@@ -1,0 +1,172 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Steve Wiseman Documentation API
+  license:
+    name: MIT
+servers:
+  - url: https://api.steve-wiseman-docs.com/v1
+paths:
+  /workspaces:
+    get:
+      summary: List all workspaces for the authenticated user
+      operationId: listWorkspaces
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A paged array of workspaces
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspaces'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new workspace for organizing documentation
+      operationId: createWorkspace
+      responses:
+        201:
+          description: Workspace creation successful
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /workspaces/{workspaceId}:
+    get:
+      summary: Retrieve detailed information about a specific workspace
+      operationId: showWorkspaceById
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          description: The unique identifier of the workspace to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Detailed workspace information including settings and members
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspaces'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update an existing workspace with new configuration settings
+      operationId: updateWorkspace
+      responses:
+        200:
+          description: Workspace updated successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /documents:
+    get:
+      summary: Retrieve a list of all documents across workspaces
+      operationId: listDocuments
+      parameters:
+        - name: workspace
+          in: query
+          description: Filter documents by workspace ID
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A paginated list of documents with metadata
+          headers:
+            x-next:
+              description: Link to the next page of results
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new document in the specified workspace
+      operationId: createDocument
+      responses:
+        201:
+          description: Document created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Workspace:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    Workspaces:
+      type: array
+      items:
+        $ref: '#/components/schemas/Workspace'
+    Document:
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        workspaceId:
+          type: string
+    Documents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

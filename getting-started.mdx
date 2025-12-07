@@ -1,0 +1,141 @@
+---
+title: Getting Started
+description: Step-by-step guide to set up and begin using Steve Wiseman Documentation
+---
+
+## Setting Up Your Account
+
+Welcome to Steve Wiseman Documentation! This guide will walk you through creating your account, setting up your first documentation space, and importing existing content.
+
+<Steps>
+  <Step title="Create Account" icon="user">
+    Visit our website and click "Sign Up" to create your account.
+    
+    <CodeGroup tabs="JavaScript,cURL">
+      ````javascript
+const response = await fetch('/api/auth/signup', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    email: 'user@example.com',
+    password: 'securepassword'
+  })
+});
+````
+      ````bash
+curl -X POST /api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","password":"securepassword"}'
+````
+    </Step>
+  <Step title="Verify Email" icon="mail">
+    Check your email for a verification link and click it to activate your account.
+  </Step>
+  <Step title="Create Workspace" icon="folder">
+    Once logged in, create your first workspace for organizing documentation.
+    
+    <Tabs>
+      <Tab title="Web Interface" icon="monitor">
+        Click "New Workspace" in the dashboard and enter a name like "Project Docs".
+      </Tab>
+      <Tab title="API" icon="code">
+        Use our API to create workspaces programmatically.
+        
+        ````javascript
+const workspace = await createWorkspace({
+  name: 'Project Docs',
+  description: 'Documentation for our main project'
+});
+````
+      </Tab>
+    </Tabs>
+  </Step>
+</Steps>
+
+## Importing Existing Content
+
+<Expandable title="Supported Formats" default-open="false">
+We support importing from various formats including Markdown files, HTML, and other documentation platforms.
+</Expandable>
+
+<Callout kind="tip">Use our bulk import feature to migrate large amounts of existing documentation quickly.</Callout>
+
+## Basic Navigation
+
+<Tabs>
+  <Tab title="Dashboard" icon="home">
+    Your central hub for accessing all workspaces and recent documents.
+  </Tab>
+  <Tab title="Search" icon="search">
+    Find any document instantly with our powerful search functionality.
+  </Tab>
+  <Tab title="Settings" icon="settings">
+    Configure your account preferences and workspace settings.
+  </Tab>
+</Tabs>
+
+## Creating Your First Document
+
+<Steps>
+  <Step title="Navigate to Workspace" icon="folder">
+    Click on your workspace from the dashboard.
+  </Step>
+  <Step title="New Document" icon="file-text">
+    Click "New Document" and choose a template or start blank.
+    
+    <CodeGroup tabs="JavaScript,Python">
+      ````javascript
+const doc = await createDocument({
+  title: 'API Reference',
+  content: '# API Reference\n\nThis document describes our API endpoints.',
+  workspaceId: workspace.id
+});
+````
+      ````python
+doc = api.create_document(
+    title="API Reference",
+    content="# API Reference\n\nThis document describes our API endpoints.",
+    workspace_id=workspace.id
+)
+````
+    </Step>
+  <Step title="Edit and Save" icon="edit">
+    Use our rich text editor to add content, then save your changes.
+  </Step>
+</Steps>
+
+## Collaboration Basics
+
+<ExpandableGroup>
+  <Expandable title="Sharing Documents" default-open="false">
+    Share documents with team members by setting appropriate permissions.
+  </Expandable>
+  <Expandable title="Comments and Reviews" default-open="false">
+    Add comments to specific sections and create review workflows.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="info">Collaboration features are available on all plans, including our free tier.</Callout>
+
+## Troubleshooting Common Issues
+
+<Expandable title="Login Problems" default-open="false">
+If you're having trouble logging in, check that your email is verified and try resetting your password.
+</Expandable>
+
+<Expandable title="Import Errors" default-open="false">
+Ensure your import files are in supported formats and don't exceed size limits.
+</Expandable>
+
+## What's Next?
+
+Now that you have the basics set up, explore our advanced features like webhooks, custom integrations, and API usage.
+
+<Columns cols={2}>
+  <Card title="API Reference" icon="code" href="api-reference">
+    Learn about our API endpoints and integration options.
+  </Card>
+  <Card title="Configuration" icon="settings" href="configuration">
+    Customize your workspace and user settings.
+  </Card>
+</Columns>

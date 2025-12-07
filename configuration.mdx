@@ -1,0 +1,167 @@
+---
+title: Configuration
+description: Advanced configuration options and customization settings for Steve Wiseman Documentation
+---
+
+## Workspace Configuration
+
+Customize your documentation workspace to match your team's workflow and branding requirements.
+
+<Tabs>
+  <Tab title="General Settings" icon="settings">
+    Configure basic workspace information and access controls.
+    
+    <Steps>
+      <Step title="Workspace Details" icon="edit">
+        Set your workspace name, description, and visibility settings.
+        
+        <CodeGroup tabs="JavaScript,Python">
+          ````javascript
+const updateWorkspace = await fetch(`/api/workspaces/${workspaceId}`, {
+  method: 'PATCH',
+  headers: {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Updated Workspace Name',
+    description: 'New description',
+    isPublic: false
+  })
+});
+````
+          ````python
+response = requests.patch(f'/api/workspaces/{workspace_id}',
+                         json={
+                           'name': 'Updated Workspace Name',
+                           'description': 'New description',
+                           'is_public': False
+                         },
+                         headers={'Authorization': f'Bearer {api_key}'})
+````
+        </Step>
+      <Step title="Access Control" icon="lock">
+        Manage who can view, edit, or administer your workspace.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Branding" icon="palette">
+    Customize the look and feel of your documentation.
+    
+    <Expandable title="Custom Domains" default-open="false">
+      Connect your own domain for a branded documentation experience.
+    </Expandable>
+    
+    <Expandable title="Themes" default-open="false">
+      Choose from predefined themes or create custom color schemes.
+    </Expandable>
+  </Tab>
+  <Tab title="Integrations" icon="plug">
+    Connect with external tools and services.
+    
+    <Columns cols={2}>
+      <Card title="Slack" icon="message-square" href="#">
+        Get notifications and updates in Slack channels.
+      </Card>
+      <Card title="GitHub" icon="github" href="#">
+        Sync documentation with GitHub repositories.
+      </Card>
+    </Columns>
+  </Tab>
+</Tabs>
+
+## User Preferences
+
+<ExpandableGroup>
+  <Expandable title="Notification Settings" default-open="true">
+    Control how and when you receive notifications about document changes and mentions.
+    
+    <Callout kind="tip">Fine-tune notifications to avoid being overwhelmed while staying informed.</Callout>
+  </Expandable>
+  <Expandable title="Editor Preferences" default-open="false">
+    Customize the editing experience with preferred formatting options and shortcuts.
+  </Expandable>
+  <Expandable title="Language & Region" default-open="false">
+    Set your preferred language, timezone, and regional formatting.
+  </Expandable>
+</ExpandableGroup>
+
+## Advanced Features
+
+<Steps>
+  <Step title="Version Control" icon="git-branch">
+    Enable version control for all documents to track changes over time.
+    
+    <Expandable title="Version History" default-open="false">
+      Access complete version history with the ability to compare changes and restore previous versions.
+    </Expandable>
+  </Step>
+  <Step title="Templates" icon="file-text">
+    Create reusable document templates for consistent formatting.
+    
+    <CodeGroup tabs="JavaScript,cURL">
+      ````javascript
+const template = await createTemplate({
+  name: 'API Documentation',
+  content: '# {API_NAME}\n\n## Overview\n\n{OVERVIEW}\n\n## Endpoints\n\n{ENDPOINTS}',
+  variables: ['API_NAME', 'OVERVIEW', 'ENDPOINTS']
+});
+````
+      ````bash
+curl -X POST /api/templates \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "API Documentation",
+    "content": "# {API_NAME}\n\n## Overview\n\n{OVERVIEW}\n\n## Endpoints\n\n{ENDPOINTS}",
+    "variables": ["API_NAME", "OVERVIEW", "ENDPOINTS"]
+  }'
+````
+    </Step>
+  <Step title="Automation" icon="zap">
+    Set up automated workflows for document publishing and approvals.
+  </Step>
+</Steps>
+
+## Security Settings
+
+<Callout kind="alert">Configure security settings to protect your sensitive documentation.</Callout>
+
+<Tabs>
+  <Tab title="Authentication" icon="lock">
+    Set up multi-factor authentication and password policies.
+  </Tab>
+  <Tab title="Access Logs" icon="eye">
+    Monitor who accesses your documentation and when.
+    
+    | Setting | Description |
+    |---------|-------------|
+    | Audit Logs | Track all user actions |
+    | IP Restrictions | Limit access by IP address |
+    | Session Timeout | Automatically log out inactive users |
+  </Tab>
+</Tabs>
+
+## Backup and Export
+
+<ExpandableGroup>
+  <Expandable title="Automated Backups" default-open="false">
+    Schedule regular backups of your entire workspace.
+  </Expandable>
+  <Expandable title="Export Options" default-open="false">
+    Export documents in various formats including PDF, HTML, and Markdown.
+  </Expandable>
+  <Expandable title="Data Portability" default-open="false">
+    Move your data to other platforms or create local backups.
+  </Expandable>
+</ExpandableGroup>
+
+## Troubleshooting Configuration Issues
+
+<Expandable title="Common Problems" default-open="false">
+- Settings not saving: Check your permissions and try refreshing the page
+- Custom domains not working: Verify DNS configuration and SSL certificates
+- Integrations failing: Regenerate API keys and check webhook URLs
+</Expandable>
+
+<Callout kind="info">For complex configuration issues, contact our support team for assistance.</Callout>

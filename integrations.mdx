@@ -1,0 +1,207 @@
+---
+title: Integrations
+description: Connect Steve Wiseman Documentation with your favorite tools and services
+---
+
+## Overview
+
+Extend the power of Steve Wiseman Documentation by connecting it with the tools your team already uses. Our integrations enable seamless workflows across your development and documentation processes.
+
+<Columns cols={3}>
+  <Card title="Version Control" icon="git-branch" href="#version-control">
+    Sync with Git repositories and track documentation changes.
+  </Card>
+  <Card title="Communication" icon="message-square" href="#communication">
+    Keep teams informed with Slack and Microsoft Teams integrations.
+  </Card>
+  <Card title="Development" icon="code" href="#development">
+    Connect with CI/CD pipelines and development tools.
+  </Card>
+</Columns>
+
+## Version Control Integrations
+
+<Tabs>
+  <Tab title="GitHub" icon="github">
+    Sync documentation with GitHub repositories for version control and collaboration.
+    
+    <Steps>
+      <Step title="Connect Repository" icon="link">
+        Link your GitHub repository to a documentation workspace.
+        
+        <CodeGroup tabs="JavaScript,cURL">
+          ````javascript
+const connection = await connectGitHub({
+  repositoryUrl: 'https://github.com/user/repo',
+  branch: 'main',
+  token: 'ghp_your_token_here'
+});
+````
+          ````bash
+curl -X POST /api/integrations/github \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "repository_url": "https://github.com/user/repo",
+    "branch": "main",
+    "token": "ghp_your_token_here"
+  }'
+````
+        </Step>
+      <Step title="Auto-sync" icon="refresh-cw">
+        Enable automatic synchronization of documentation changes.
+      </Step>
+    </Steps>
+    
+    <Callout kind="tip">Use GitHub Actions to automate documentation updates on code changes.</Callout>
+  </Tab>
+  <Tab title="GitLab" icon="git-branch">
+    Integrate with GitLab for comprehensive version control and CI/CD.
+    
+    <Expandable title="Supported Features" default-open="false">
+      - Repository synchronization
+      - Merge request integration
+      - CI/CD pipeline triggers
+      - Issue tracking
+    </Expandable>
+  </Tab>
+</Tabs>
+
+## Communication Tools
+
+<ExpandableGroup>
+  <Expandable title="Slack Integration" default-open="true">
+    Get notifications and updates directly in your Slack channels.
+    
+    <Steps>
+      <Step title="Install App" icon="download">
+        Add the Steve Wiseman app to your Slack workspace.
+      </Step>
+      <Step title="Configure Channels" icon="settings">
+        Choose which channels receive documentation notifications.
+        
+        ````bash
+# Example webhook configuration
+WEBHOOK_URL="https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+
+curl -X POST $WEBHOOK_URL \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "New documentation published: API Reference",
+    "attachments": [
+      {
+        "title": "View Document",
+        "title_link": "https://docs.example.com/api-reference"
+      }
+    ]
+  }'
+````
+        </Step>
+      <Step title="Set Up Alerts" icon="bell">
+        Configure alerts for document updates, comments, and reviews.
+      </Step>
+    </Steps>
+  </Expandable>
+  <Expandable title="Microsoft Teams" default-open="false">
+    Connect with Microsoft Teams for enterprise communication.
+    
+    <Expandable title="Setup Process" default-open="false">
+      1. Add the app to your Teams organization
+      2. Configure notification channels
+      3. Set up automated workflows
+    </Expandable>
+  </Expandable>
+</ExpandableGroup>
+
+## Development Tools
+
+<Tabs>
+  <Tab title="CI/CD" icon="settings">
+    Integrate with continuous integration and deployment pipelines.
+    
+    <Columns cols={2}>
+      <Card title="Jenkins" icon="settings" href="#">
+        Automate documentation publishing with Jenkins pipelines.
+      </Card>
+      <Card title="GitHub Actions" icon="github" href="#">
+        Use GitHub Actions for documentation workflows.
+      </Card>
+    </Columns>
+  </Tab>
+  <Tab title="API Tools" icon="code">
+    Connect with API management and testing platforms.
+    
+    <Expandable title="Supported Platforms" default-open="false">
+      - Postman Collections
+      - Swagger/OpenAPI specs
+      - API Gateway integrations
+    </Expandable>
+  </Tab>
+</Tabs>
+
+## Webhooks
+
+Create custom integrations using our webhook system.
+
+<Callout kind="info">Webhooks allow you to build custom integrations with any service that supports HTTP endpoints.</Callout>
+
+<Steps>
+  <Step title="Create Webhook" icon="webhook">
+    Set up webhook endpoints in your workspace settings.
+    
+    <CodeGroup tabs="JavaScript,Python">
+      ````javascript
+const webhook = await createWebhook({
+  url: 'https://your-app.com/webhook',
+  events: ['document.created', 'document.updated'],
+  secret: 'your-webhook-secret'
+});
+````
+      ````python
+webhook = api.create_webhook(
+    url='https://your-app.com/webhook',
+    events=['document.created', 'document.updated'],
+    secret='your-webhook-secret'
+)
+````
+    </Step>
+  <Step title="Handle Events" icon="code">
+    Process incoming webhook events in your application.
+    
+    <Expandable title="Event Types" default-open="false">
+      - document.created
+      - document.updated
+      - document.deleted
+      - workspace.member_added
+      - comment.created
+    </Expandable>
+  </Step>
+  <Step title="Verify Signatures" icon="lock">
+    Use webhook signatures to verify request authenticity.
+  </Step>
+</Steps>
+
+## Custom Integrations
+
+<ExpandableGroup>
+  <Expandable title="API Access" default-open="false">
+    Build custom integrations using our comprehensive REST API.
+  </Expandable>
+  <Expandable title="SDKs" default-open="false">
+    Use our official SDKs for faster development.
+  </Expandable>
+  <Expandable title="Zapier" default-open="false">
+    Connect with thousands of apps through Zapier integrations.
+  </Expandable>
+</ExpandableGroup>
+
+## Managing Integrations
+
+<Expandable title="Best Practices" default-open="false">
+- Regularly rotate API keys and tokens
+- Monitor integration usage and performance
+- Set up proper error handling and retries
+- Test integrations thoroughly before production use
+</Expandable>
+
+<Callout kind="success">Need help with a specific integration? Check our community forums or contact support.</Callout>
